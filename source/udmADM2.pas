@@ -1,0 +1,136 @@
+unit udmADM2;
+
+interface
+
+uses
+  SysUtils, Classes, DBXpress, DB, SqlExpr, FMTBcd, Provider, DBClient, Forms, Windows;
+
+type
+  TdmADM2 = class(TDataModule)
+    sqlConexao: TSQLConnection;
+    dstRequerimento: TSQLDataSet;
+    dstAtendimento: TSQLDataSet;
+    dstTiposAtendimentos: TSQLDataSet;
+    dstTiposAtendimentosTPA_CODIGO: TIntegerField;
+    dstTiposAtendimentosTPA_DESCRICAO: TStringField;
+    dstRequerimentoREQ_ID: TIntegerField;
+    dstRequerimentoREQ_DATA: TDateField;
+    dstRequerimentoREQ_HORA: TStringField;
+    dstRequerimentoREQ_CLIENTE: TStringField;
+    dstRequerimentoREQ_SOLICITANTE: TStringField;
+    dstRequerimentoREQ_DTPREVISAO: TDateField;
+    dstRequerimentoREQ_HOPREVISAO: TStringField;
+    dstRequerimentoREQ_TECNICO: TStringField;
+    dstRequerimentoREQ_TIPO: TIntegerField;
+    dstRequerimentoREQ_SITUACAO: TStringField;
+    dstAtendimentoATE_ID: TIntegerField;
+    dstAtendimentoATE_TIPO: TIntegerField;
+    dstAtendimentoATE_DATA: TDateField;
+    dstAtendimentoATE_HORA: TStringField;
+    dstAtendimentoATE_DIAGNOSTICO: TMemoField;
+    dstAtendimentoATE_SITUACAO: TStringField;
+    cdsRequerimentos: TClientDataSet;
+    dspRequerimento: TDataSetProvider;
+    cdsRequerimentosREQ_ID: TIntegerField;
+    cdsRequerimentosREQ_DATA: TDateField;
+    cdsRequerimentosREQ_HORA: TStringField;
+    cdsRequerimentosREQ_CLIENTE: TStringField;
+    cdsRequerimentosREQ_SOLICITANTE: TStringField;
+    cdsRequerimentosREQ_DTPREVISAO: TDateField;
+    cdsRequerimentosREQ_HOPREVISAO: TStringField;
+    cdsRequerimentosREQ_TECNICO: TStringField;
+    cdsRequerimentosREQ_TIPO: TIntegerField;
+    cdsRequerimentosREQ_SITUACAO: TStringField;
+    dspAtendimento: TDataSetProvider;
+    cdsAtendimento: TClientDataSet;
+    cdsAtendimentoATE_ID: TIntegerField;
+    cdsAtendimentoATE_TIPO: TIntegerField;
+    cdsAtendimentoATE_DATA: TDateField;
+    cdsAtendimentoATE_HORA: TStringField;
+    cdsAtendimentoATE_DIAGNOSTICO: TMemoField;
+    cdsAtendimentoATE_SITUACAO: TStringField;
+    dspTpAtendimento: TDataSetProvider;
+    cdsTpAtend: TClientDataSet;
+    cdsTpAtendTPA_CODIGO: TIntegerField;
+    cdsTpAtendTPA_DESCRICAO: TStringField;
+    dstConfig: TSQLDataSet;
+    dspConfig: TDataSetProvider;
+    cdsConfig: TClientDataSet;
+    cdsConfigCFG_REQUERIMENTO: TIntegerField;
+    dstConfigCFG_REQUERIMENTO: TIntegerField;
+    cdsAtendimentoATE_NOMETIPO: TStringField;
+    dstRequerimentoREQ_CDFUNC: TStringField;
+    cdsRequerimentosREQ_CDFUNC: TStringField;
+    cdsRequerimentosREQ_NMTECNICO: TStringField;
+    dstRequerimentoREQ_DEFEITO: TMemoField;
+    cdsRequerimentosREQ_DEFEITO: TMemoField;
+    dstAtendimentoATE_IDREQUERIMENTO: TIntegerField;
+    cdsAtendimentoATE_IDREQUERIMENTO: TIntegerField;
+    dstConsulta: TSQLDataSet;
+    dspConsulta: TDataSetProvider;
+    cdsConsulta: TClientDataSet;
+    dstAtendimentoATE_CDTECNICO: TStringField;
+    cdsAtendimentoATE_CDTECNICO: TStringField;
+    cdsAtendimentoATE_TECNICO: TStringField;
+    procedure dspAtendimentoGetTableName(Sender: TObject;
+      DataSet: TDataSet; var TableName: String);
+    procedure dspRequerimentoGetTableName(Sender: TObject;
+      DataSet: TDataSet; var TableName: String);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Procedure Parametros;
+  end;
+
+var
+  dmADM2: TdmADM2;
+
+implementation
+
+uses udmADM;
+
+{$R *.dfm}
+
+procedure TdmADM2.dspAtendimentoGetTableName(Sender: TObject;
+  DataSet: TDataSet; var TableName: String);
+begin
+     TableName := 'ATENDIMENTOS';
+end;
+
+procedure TdmADM2.dspRequerimentoGetTableName(Sender: TObject;
+  DataSet: TDataSet; var TableName: String);
+begin
+     TableName := 'REQUERIMENTOS';
+end;
+
+procedure TdmADM2.DataModuleCreate(Sender: TObject);
+begin
+{     Try
+        sqlConexao.Connected := True;
+        //
+     Except
+        on Exc:Exception do
+        begin
+           Application.MessageBox(PChar('Error ao tentar conectar banco de dados!!!'+#13
+                      + Exc.Message),
+                      'ATENÇÃO', MB_OK+MB_ICONSTOP+MB_APPLMODAL);
+           Application.Terminate;
+        End;
+     End;}
+end;
+
+procedure TdmADM2.DataModuleDestroy(Sender: TObject);
+begin
+     sqlConexao.Connected := False;
+end;
+
+procedure TdmADM2.Parametros;
+begin
+     cdsConfig.close;
+     cdsConfig.Open;
+end;
+
+end.
