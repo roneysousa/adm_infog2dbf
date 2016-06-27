@@ -22,7 +22,9 @@ uses
   uFrmEnvelopeBoleto in 'uFrmEnvelopeBoleto.pas' {FrmEnvelopeBoleto},
   uCodBarras in 'uCodBarras.pas',
   uFrmConfig in 'uFrmConfig.pas' {FrmConfig},
-  uFrmDeclaracaoPAF in 'uFrmDeclaracaoPAF.pas' {FrmDeclaracoes};
+  uFrmDeclaracaoPAF in 'uFrmDeclaracaoPAF.pas' {FrmDeclaracoes},
+  uFrmSendEmail in 'uFrmSendEmail.pas' {FrmSendMail},
+  uFrmConfigEmail in 'uFrmConfigEmail.pas' {Form1};
 
 {$R *.res}
 
@@ -31,6 +33,7 @@ begin
   Application.CreateForm(TdmADM, dmADM);
   Application.CreateForm(TdmADM2, dmADM2);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TFrmDeclaracoes, FrmDeclaracoes);
+  Application.CreateForm(TFrmSendMail, FrmSendMail);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

@@ -8417,7 +8417,7 @@ object frmCobranca: TfrmCobranca
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 114000
     PrinterSetup.mmPaperWidth = 227000
-    PrinterSetup.PaperSize = 132
+    PrinterSetup.PaperSize = 138
     Template.FileName = 'C:\Empresa\ADM\Relatorios\rbEnvelope.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'

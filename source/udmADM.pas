@@ -206,6 +206,16 @@ type
     QryDebitoaDataCobranca: TDateField;
     QryDebitoDEB_VLPROM: TFloatField;
     qryLocClientesCLI_NUMERO: TStringField;
+    cdsConfigEmail: TClientDataSet;
+    cdsConfigEmailSMTP: TStringField;
+    cdsConfigEmailPORTA: TIntegerField;
+    cdsConfigEmailLOGIN: TStringField;
+    cdsConfigEmailSENHA: TStringField;
+    cdsConfigEmailNOME_DE: TStringField;
+    cdsConfigEmailASSUNTO: TStringField;
+    cdsConfigEmailMENSAGEM: TMemoField;
+    cdsConfigEmailSSL: TBooleanField;
+    cdsConfigEmailTSL: TBooleanField;
     procedure qryClientesCalcFields(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure QryDebitoCalcFields(DataSet: TDataSet);
@@ -948,7 +958,8 @@ begin
                   SetParam('NOME_BANCO', 'BANCO DO BRASIL');
                   SetParam('LINDIG', uCodBarras.TgbCobCodBar.Create.GetLinhaDigitavel(M_CODIGOBARRAS));
                   SetParam('CODIGO', M_CODIGOBARRAS);
-                  SetParam('DTPROC', DatetoStr(Date()));
+                  //SetParam('DTPROC', DatetoStr(Date()));
+                  SetParam('DTPROC', '01/05/2016');
                   if uFuncoes.Empty(cdsConfigMENSAGEM2.AsString) Then
                       SetParam('LOCAL_PAG', 'ATE O VENCIMENTO PAGAVÉL EM QUALQUER BANCO')
                   Else
@@ -979,10 +990,10 @@ begin
                   SetParam('pEND_NOVO', cdsConfigENDERECO.AsString);   // texto
                   //SetParam('TEXTO_BOL', 'MENSAGEM DE TESTE');
                   SetParam('pEMPRESA', 'INFOG2 TECNOLOGIA LTDA');
-                  SetParam('pENDERECO','AVENIDA JOSÉ DOS SANTOS E SILVA, Nº 1769');
-                  SetParam('pCOMPLEMENTO','ED. TALISMÃ, SALA 108, TERREO');
-                  SetParam('pBAIRRO','CENTRO');
-                  SetParam('pCEP','64001-300');
+                  SetParam('pENDERECO','RUA MAGALHÃES FILHO, Nº. 1350');
+                  SetParam('pCOMPLEMENTO','');
+                  SetParam('pBAIRRO','MARQUÊS DE PARANAGUÁ');
+                  SetParam('pCEP','CEP: 64002-450');
                   SetParam('pCIDADE','TERESINA-PI');
                   //
                   With gbTitulo1 do
@@ -1245,7 +1256,12 @@ begin
      dmADM.cdsConfig.close;
      if FileExists('Config.xml') Then
         dmADM.cdsConfig.LoadFromFile('Config.xml');
+     if FileExists('ConfigEmail.xml') Then
+        dmADM.cdsConfigEmail.LoadFromFile('ConfigEmail.xml');
+
+
      dmADM.RefreshCDS(dmADM.cdsConfig);
+     dmADM.RefreshCDS(cdsConfigEmail);
 end;
 
 procedure TdmADM.QryDebitoCalcFields(DataSet: TDataSet);
@@ -1440,7 +1456,8 @@ begin
                   SetParam('NOME_BANCO', 'BANCO DO BRASIL');
                   SetParam('LINDIG', uCodBarras.TgbCobCodBar.Create.GetLinhaDigitavel(M_CODIGOBARRAS));
                   SetParam('CODIGO', M_CODIGOBARRAS);
-                  SetParam('DTPROC', DatetoStr(Date()));
+                  //SetParam('DTPROC', DatetoStr(Date()));
+                  SetParam('DTPROC', '01/05/2016');
                   if uFuncoes.Empty(cdsConfigMENSAGEM2.AsString) Then
                       SetParam('LOCAL_PAG', 'ATE O VENCIMENTO PAGAVÉL EM QUALQUER BANCO')
                   Else
@@ -1473,10 +1490,10 @@ begin
                   SetParam('pEND_NOVO', cdsConfigENDERECO.AsString);   // texto
                   //SetParam('TEXTO_BOL', 'MENSAGEM DE TESTE');
                   SetParam('pEMPRESA', 'INFOG2 TECNOLOGIA LTDA');
-                  SetParam('pENDERECO','AVENIDA JOSÉ DOS SANTOS E SILVA, Nº 1769');
-                  SetParam('pCOMPLEMENTO','ED. TALISMÃ, SALA 108, TERREO');
-                  SetParam('pBAIRRO','CENTRO');
-                  SetParam('pCEP','64001-300');
+                  SetParam('pENDERECO','RUA MAGALHÃES FILHO, Nº. 1350');
+                  SetParam('pCOMPLEMENTO','');
+                  SetParam('pBAIRRO','MARQUÊS DE PARANAGUÁ');
+                  SetParam('pCEP','CEP: 64002-450');
                   SetParam('pCIDADE','TERESINA-PI');
                   //
                   With gbTitulo1 do

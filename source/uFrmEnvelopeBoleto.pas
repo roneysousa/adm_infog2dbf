@@ -161,9 +161,9 @@ begin
       With dmADM.RvEnvBoleto do
       begin
            SetParam('pEMPRESA', 'INFOG2 TECNOLOGIA LTDA');
-           SetParam('pENDERECO','AVENIDA JOSÉ DOS SANTOS E SILVA, Nº 1769');
-           SetParam('pCOMPLEMENTO','ED. TALISMÃ, SALA 108, TERREO');
-           SetParam('pBAIRRO','CENTRO');
+           SetParam('pENDERECO','RUA MAGALHÃES FILHO, Nº 1350');
+           SetParam('pCOMPLEMENTO',' ');
+           SetParam('pBAIRRO','MARQUÊS');
            SetParam('pCEP','64001-300');
            SetParam('pCIDADE','TERESINA-PI');
            //

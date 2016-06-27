@@ -206,7 +206,7 @@ var
 
 implementation
 
-uses uFuncoes, uLocCliente, udmADM, uFrmConfig;
+uses uFuncoes, uLocCliente, udmADM, uFrmConfig, uFrmSendEmail;
 
 {$R *.dfm}
 
@@ -1153,10 +1153,16 @@ begin
   Application.MessageBox(PChar('Arquivos gerandos com sucesso.'),
                          'ATENÇÃO', MB_OK+MB_ICONINFORMATION+MB_APPLMODAL);
   //
-  if FileExists('EnvioEmail.exe') Then
+  Application.CreateForm(TFrmSendMail, FrmSendMail);
+  Try
+        FrmSendMail.ShowModal;
+  Finally
+        FrmSendMail.Free;
+  End;
+  {if FileExists('EnvioEmail.exe') Then
      ExecutePrograma('EnvioEmail.exe', '')
   Else
-     Raise Exception.Create('Módulo de envio de email não encontrado!!!');
+     Raise Exception.Create('Módulo de envio de email não encontrado!!!');     }
 end;
 
 procedure TfrmCobranca.ExecutePrograma(Nome, Parametros: String);

@@ -22,7 +22,9 @@ uses
   uFrmEnvelopeBoleto in 'uFrmEnvelopeBoleto.pas' {FrmEnvelopeBoleto},
   uCodBarras in 'uCodBarras.pas',
   uFrmConfig in 'uFrmConfig.pas' {FrmConfig},
-  uFrmDeclaracaoPAF in 'uFrmDeclaracaoPAF.pas' {FrmDeclaracoes};
+  uFrmDeclaracaoPAF in 'uFrmDeclaracaoPAF.pas' {FrmDeclaracoes},
+  uFrmSendEmail in 'uFrmSendEmail.pas' {FrmSendMail},
+  uFrmConfigEmail in 'uFrmConfigEmail.pas' {FrmConfigEmail};
 
 {$R *.res}
 

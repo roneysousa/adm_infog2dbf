@@ -167,6 +167,7 @@ begin
            SetParam('pCEP','64001-300');
            SetParam('pCIDADE','TERESINA-PI');
            //
+           dmADM.RvSystem2.DefaultDest := rdPreview;
            Execute;
       End;
 end;
